@@ -472,14 +472,16 @@ class Vector3 {
 
 	}
 
-	nonLinearLerp(vector, alpha, strength) {
+	nonLinearLerp( vector, alpha, strength ) {
+
 		const invAlpha = 1 - alpha;
-		const powAlpha = Math.pow(alpha, strength);
-		const powInvAlpha = Math.pow(invAlpha, strength);
+		const powAlpha = Math.pow( alpha, strength );
+		const powInvAlpha = Math.pow( invAlpha, strength );
 		this.x = this.x * powInvAlpha + vector.x * powAlpha;
 		this.y = this.y * powInvAlpha + vector.y * powAlpha;
 		this.z = this.z * powInvAlpha + vector.z * powAlpha;
 		return this;
+
 	}
 
 	cross( v ) {
