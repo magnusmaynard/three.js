@@ -18,7 +18,7 @@
 
 		<script type="module">
 
-			import * as THREE from 'three';
+			import * as THREE, { Color } from 'three';
 
 			let camera, scene, renderer;
 			let mesh;
@@ -77,6 +77,12 @@
 
 				const geometryCylinder = new THREE.CylinderGeometry( 0.5, 0.5, 1, 32 );
 				const materialCylinder = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+
+				for (let i = 0; i < mesh.count; i++) {
+				    const color = new THREE.Color(Math.random(), Math.random(), Math.random()); // Generates a random color
+				    mesh.setColorAt(i, color);
+				}
+				mesh.instanceColor.needsUpdate = true; // Ensure the color update is applied
 
 				mesh = new THREE.Mesh( geometryCylinder, materialCylinder );
 				mesh.castShadow = true;
