@@ -745,6 +745,21 @@ export default QUnit.module( 'Maths', () => {
 
 		} );
 
+		QUnit.test( 'nonLinearLerp', ( assert ) => {
+	    const a = new Vector3(0, 0, 0);
+	    const b = new Vector3(10, -10, 10);
+	    const result = new Vector3();
+
+	    result.copy(a).nonLinearLerp(b, 0.5, 1); // Linear interpolation for comparison
+	    assert.ok( result.equals(new Vector3(5, -5, 5)), 'Strength 1 (linear) works correctly' );
+
+	    result.copy(a).nonLinearLerp(b, 0.5, 2); // Quadratic interpolation
+	    assert.ok( result.equals(new Vector3(2.5, -2.5, 2.5)), 'Strength 2 (quadratic) works correctly' );
+
+	    result.copy(a).nonLinearLerp(b, 0.5, 0.5); // Square root interpolation
+	    assert.ok( result.equals(new Vector3(7.0710678118654755, -7.0710678118654755, 7.0710678118654755)), 'Strength 0.5 (square root) works correctly' );
+		});
+
 		QUnit.test( 'fromArray', ( assert ) => {
 
 			const a = new Vector3();
